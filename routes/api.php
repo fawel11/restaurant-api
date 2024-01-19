@@ -38,6 +38,10 @@ Route::group(['prefix' => 'v1'], function () {
             Route::post('store', [CategoryController::class, 'store']);
         });
 
+        Route::group(['prefix' => 'item'], function () {
+            Route::post('store', [ItemController::class, 'store']);
+        });
+
 
 
     });
