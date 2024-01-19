@@ -17,4 +17,8 @@ class Item extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function discounts(): HasMany
+    {
+        return $this->hasMany(Discount::class);
+    }
 }
