@@ -32,9 +32,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     });
 
-    Route::group(['namespace' => 'V1'], function () {
+    Route::group(['namespace' => 'V1', 'middleware' => 'auth:sanctum'], function () {
 
         Route::group(['prefix' => 'category'], function () {
+            Route::post('', [CategoryController::class, 'index']);
             Route::post('store', [CategoryController::class, 'store']);
         });
 
@@ -48,7 +49,7 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'menu'], function () {
-            Route::get('', [MenuController::class, 'index']);
+            Route::get('', [MenuController::class, 'index'])->withoutMiddleware('auth:sanctum');
         });
 
     });
