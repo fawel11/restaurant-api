@@ -32,6 +32,14 @@ Route::group(['prefix' => 'v1'], function () {
 
     });
 
+    Route::group(['namespace' => 'V1'], function () {
 
+        Route::group(['prefix' => 'category'], function () {
+            Route::post('store', [CategoryController::class, 'store']);
+        });
+
+
+
+    });
 
 });
