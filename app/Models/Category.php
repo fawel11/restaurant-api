@@ -44,5 +44,8 @@ class Category extends Model
         return 'subcategory';
     }
 
-
+    public function level()
+    {
+        return $this->parent ? $this->parent->level() + 1 : 0;
+    }
 }
