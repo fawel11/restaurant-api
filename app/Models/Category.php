@@ -24,4 +24,25 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+    public function discounts(): HasMany
+    {
+        return $this->hasMany(Discount::class);
+    }
+    public function getTypeAttribute()
+    {
+        if ($this->items->isNotEmpty()) {
+            return 'item';
+        }
+
+        if ( $this->parent()->isEmpty() ) {
+            return 'category';
+        }
+        return 'subcategory';
+    }
+
+
 }
