@@ -42,6 +42,11 @@ Route::group(['prefix' => 'v1'], function () {
             Route::post('store', [ItemController::class, 'store']);
         });
 
+        Route::group(['prefix' => 'discount'], function () {
+            Route::post('store', [DiscountController::class, 'store']);
+            Route::post('update', [DiscountController::class, 'update']);
+        });
+
 
 
     });
