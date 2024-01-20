@@ -7,15 +7,18 @@ use App\Http\Requests\DiscountRequest;
 use App\Http\Resources\DiscountResource;
 use App\Models\Discount;
 use Illuminate\Http\Request;
+use App\Mutators\TypeMutator;
 
 class DiscountController extends Controller
 {
 
     protected $discount;
+    protected $typeMutator;
 
-    public function __construct(Discount $discount)
+    public function __construct(Discount $discount, TypeMutator $typeMutator)
     {
         $this->discount = $discount;
+        $this->typeMutator = $typeMutator;
     }
 
     public function index(Request $request)
@@ -30,17 +33,17 @@ class DiscountController extends Controller
 
     public function store(DiscountRequest $request)
     {
+        $discount =$this->discount;
 
-        $discount = Discount::create($request->all());
+        $discount->value = $request->input('value');
+        $discount->category_id = $request->input('category_id');
+        $discount->item_id = $request->input('item_id');
+        $discount->type = $this->typeMutator->mutateType($discount);
+        $discount->save();
 
         return response()->json(['message' => 'Discount created successfully', 'data' => $discount], 201);
     }
 
-    public function update(DiscountRequest $request, Discount $discount)
-    {
 
-        $discount->update($request->all());
 
-        return response()->json(['message' => 'Discount updated successfully', 'data' => $discount]);
-    }
 }
