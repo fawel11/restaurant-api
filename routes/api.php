@@ -40,6 +40,7 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'item'], function () {
+            Route::get('list', [ItemController::class, 'index']);
             Route::post('store', [ItemController::class, 'store']);
         });
 
