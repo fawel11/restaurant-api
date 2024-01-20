@@ -24,9 +24,8 @@ class DiscountRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|string',
-            'type' => 'required|in:all_menu,category,item',
-            'value' => 'required|numeric',
+           // 'type' => 'required|in:all_menu,category,item',
+            'value' => 'required|numeric|gt:0',
             'category_id' => 'nullable|exists:categories,id',
             'item_id' => 'nullable|exists:items,id',
         ];
