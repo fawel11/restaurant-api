@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a simple blog application built with Laravel. Users can create, edit, and delete blog posts. The application includes role-based access control, with "admin" users having the ability to manage all blog posts, while "user" users can only manage their own posts.
+This is a simple restaurant api application built with Laravel 8.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Make sure you have the following installed:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/fawel11/my-blog.git
+    git clone 
     ```
 
 2. **Navigate to the project directory:**
@@ -95,10 +95,6 @@ Make sure you have the following installed:
 
     - **Email:** admin@example.com
     - **Password:** 12345678
-## API for POSTMAN
-1. **Import the json file in postman:**
-
-    - **Path:** /My Blog.postman_collection.json
 
 ## Additional Configuration
 
