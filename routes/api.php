@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'auth'], function () {
-        Route::post('login', [AuthController::class, 'login']);
+        Route::post('login', [AuthController::class, 'login'])->name('login');;
         Route::post('register', [AuthController::class, 'register']);
 
         Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['namespace' => 'V1', 'middleware' => 'auth:sanctum'], function () {
 
         Route::group(['prefix' => 'category'], function () {
-            Route::post('', [CategoryController::class, 'index']);
+            Route::get('list', [CategoryController::class, 'index']);
             Route::post('store', [CategoryController::class, 'store']);
         });
 
