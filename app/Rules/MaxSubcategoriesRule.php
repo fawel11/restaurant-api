@@ -28,10 +28,11 @@ class MaxSubcategoriesRule implements Rule
     public function passes($attribute, $value)
     {
         $maxLevel = 4;
-
-        $level = Category::find($value)->level();
-
-        return $level <= $maxLevel;
+        $category = Category::find($value);
+        if ($category) {
+            return $category->level() < $maxLevel;
+        }
+        return true;
     }
 
     /**

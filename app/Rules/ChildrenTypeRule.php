@@ -28,7 +28,12 @@ class ChildrenTypeRule implements Rule
     public function passes($attribute, $value)
     {
         $category = Category::find($value);
-        return $category->type !== 'item';
+
+        if ($category) {
+            return $category->type !== 'item';
+        }
+
+        return true;
     }
 
     /**
