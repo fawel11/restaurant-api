@@ -30,13 +30,13 @@ class DiscountService
     protected function getItemDiscount(Item $item)
     {
 
-        return $item->discounts->first();
+        return $item->discounts->last();
     }
 
     protected function getCategoryDiscount(Category $category)
     {
         while ($category) {
-            $categoryDiscount = $category->discounts->first();
+            $categoryDiscount = $category->discounts->last();
 
             if ($categoryDiscount) {
                 return $categoryDiscount;
@@ -50,7 +50,7 @@ class DiscountService
 
     protected function getAllMenuDiscount()
     {
-        return Discount::where('type', 'all_menu')->first();
+        return Discount::where('type', 'all_menu')->latest()->first();
     }
 
     public function calculateDiscountedAmount(Item $item)
