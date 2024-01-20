@@ -25,15 +25,29 @@ class ChildrenTypeRule implements Rule
      * @param mixed $value
      * @return bool
      */
+    protected $isViolated = false;
+
     public function passes($attribute, $value)
     {
         $category = Category::find($value);
 
-        if ($category) {
-            return $category->type !== 'item';
+        if (!$category) {
+            return false;
         }
 
-        return true;
+        $this->checkChildrenTypes($category);
+
+        return !$this->isViolated;
+    }
+
+    protected function checkChildrenTypes(Category $category)
+    {
+        $this->isViolated = false;
+
+        $this->isViolated = false;
+        if ($category->items()->exists()) {
+            $this->isViolated = true;
+        }
     }
 
     /**
