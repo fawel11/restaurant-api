@@ -28,17 +28,19 @@ class Category extends Model
     {
         return $this->hasMany(Item::class);
     }
+
     public function discounts(): HasMany
     {
         return $this->hasMany(Discount::class);
     }
+
     public function getTypeAttribute()
     {
         if ($this->items->isNotEmpty()) {
             return 'item';
         }
 
-        if ( $this->parent()->isEmpty() ) {
+        if (!$this->parent) {
             return 'category';
         }
         return 'subcategory';
