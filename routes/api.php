@@ -44,6 +44,7 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'discount'], function () {
+            Route::get('list', [DiscountController::class, 'index']);
             Route::post('store', [DiscountController::class, 'store']);
             Route::post('update', [DiscountController::class, 'update']);
         });
