@@ -43,8 +43,6 @@ class ChildrenTypeRule implements Rule
     protected function checkChildrenTypes(Category $category)
     {
         $this->isViolated = false;
-
-        $this->isViolated = false;
         if ($category->items()->exists()) {
             $this->isViolated = true;
         }
